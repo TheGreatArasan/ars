@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+
+    
+</head>
+<body style="background-image: url('https://cdn-media-2.freecodecamp.org/w1280/5f9c9cfc740569d1a4ca3543.jpg');">
+
+<div class="container text-center">
+    
+    <h1 style="color: white;">Update Profile of {{user.username}}</h1>
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
+
+<div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col">
+        {% if user.is_authenticated %}
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header text-white bg-info">
+                            <div class="card-title">
+                                Fill in your Profile
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form style="margin-left: 100px;color: rgb(233, 227, 227);text-align: start;background-image: url('https://media.geeksforgeeks.org/wp-content/uploads/20210723050322/Lineargradient2-660x322.png');background-repeat: no-repeat;background-size: cover;"method="POST">
+                                {% csrf_token %}
+                                {{ form.as_div }}
+                                <button class="btn btn-info" type="submit">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        <a style="background-color: rgb(191, 197, 202);color: black;margin-left: 100px;border-radius: .1rem;align-items: center;"class="btn btn-primary" href="{% url 'logout' %}">LogOut</a>
+        {% else %}
+        <h1>Please login here</h1>
+        <a class="btn btn-primary" href="/">Login</a>
+        {% endif %}
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
